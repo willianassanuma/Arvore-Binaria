@@ -1,0 +1,34 @@
+public class Noh {
+
+    private Integer valorNo = 0; // para arvore com valores inteiros
+    private Integer pesoAresta = 0; // peso da aresta, do noh pai para noh filho, root peso = 0
+    private Noh nohEsquerda; // noh filho da esquerda
+    private Noh nohDireita; // noh filho da direita
+
+    public Noh(Integer valorNo, Integer pesoAresta) {
+        
+        this.valorNo = valorNo; 
+        this.pesoAresta = pesoAresta; 
+        this.nohEsquerda = null;
+        this.nohDireita = null;
+    }
+
+    public void InserirItemAutomatico(Integer item, Integer pesoAresta) {
+        Integer valorNoAtual = valorNo;
+        if (item < valorNoAtual) { // verifica se o valor é menor, alocando o noh com a lógica binária
+            if (nohEsquerda == null) {
+                nohEsquerda = new Noh(item, pesoAresta);
+            } else {
+                nohEsquerda.InserirItemAutomatico(item, pesoAresta);  
+            }
+        } else {  // verifica se o valor é maior, alocando o noh com a lógica binária
+                            //caso o valor seja igual alocará na sub-arvore direita
+            if (nohDireita == null) {
+                nohDireita = new Noh(item, pesoAresta);
+            } else {
+                nohDireita.InserirItemAutomatico(item, pesoAresta);
+            }
+        }
+    }
+    
+}
